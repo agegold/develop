@@ -52,6 +52,9 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.GENESIS_G90:
       ret.mass = 2200
       ret.wheelbase = 3.15
+    elif candidate == CAR.GENESIS_G90_L:
+      ret.mass = 2290
+      ret.wheelbase = 3.45
     # hyundai
     elif candidate in [CAR.SANTA_FE]:
       ret.mass = 1694 + STD_CARGO_KG
@@ -118,7 +121,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 1737. + STD_CARGO_KG
       ret.wheelbase = 2.7
       tire_stiffness_factor = 0.385
-    elif candidate in [CAR.CARDENZA, CAR.CARDENZA_HEV]:
+    elif candidate in [CAR.CADENZA, CAR.CRDENZA_HEV]:
       tire_stiffness_factor = 0.6
       ret.mass = 1640. + STD_CARGO_KG
       ret.wheelbase = 2.845

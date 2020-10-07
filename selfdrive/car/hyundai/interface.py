@@ -25,31 +25,33 @@ class CarInterface(CarInterfaceBase):
     ret.communityFeature = False # candidate not in [CAR.SONATA]
 
 
-    ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerRateCost = 0.5
-    ret.steerLimitTimer = 0.8
+    ret.steerActuatorDelay = 0.2  # Default delay
+    ret.steerRateCost = 0.55
+    ret.steerLimitTimer = 2.5
     tire_stiffness_factor = 1.
 
-    if candidate == CAR.GRANDEUR_HEV_19:
-      ret.mass = 1675. + STD_CARGO_KG
-      ret.wheelbase = 2.845
-      ret.steerRatio = 13.96   #12.5
+    if candidate == CAR.GENESIS_G90:
+      ret.mass = 2290
+      ret.wheelbase = 3.45
+      ret.steerRatio = 13.0
       ret.steerMaxBP = [0.]
       ret.steerMaxV = [1.0]
-      ret.lateralTuning.pid.kf = 0.000005
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
-
+      #ret.lateralTuning.pid.kf = 0.000005
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+ 
       ret.lateralTuning.init('lqr')
-      ret.lateralTuning.lqr.scale = 1700.0
-      ret.lateralTuning.lqr.ki = 0.02
+      
+      ret.lateralTuning.lqr.scale = 1630.0
+      ret.lateralTuning.lqr.ki = 0.01
+
       ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
       ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
       ret.lateralTuning.lqr.c = [1., 0.]
-      ret.lateralTuning.lqr.k = [-100., 450.]
-      ret.lateralTuning.lqr.l = [0.22, 0.318]
-      ret.lateralTuning.lqr.dcGain = 0.003
-
+      ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
+      ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
+      ret.lateralTuning.lqr.dcGain = 0.002858 #0.002237852961363602
+      
       ret.atomTuning.cvBPV        = [0. ]   # Speed  kph
       ret.atomTuning.cvV          = [[200., 255.] ]  # CV
       ret.atomTuning.cvSteerMaxV  = [[255.,250.]  ]
@@ -59,7 +61,7 @@ class CarInterface(CarInterfaceBase):
       ret.atomTuning.srBPV      = [30.*CV.KPH_TO_MS, 40.*CV.KPH_TO_MS, 80.*CV.KPH_TO_MS]   # Speed  kph
       ret.atomTuning.srV        = [ [0.],      [0.],      [0.]     ]  # CV
       ret.atomTuning.srkiV      = [ [0.001],   [0.015],   [0.02]   ]
-      ret.atomTuning.srscaleV   = [ [2000],    [1900.0],  [1850.0] ]
+      ret.atomTuning.srscaleV   = [ [1800],    [1600.0],  [1630.0] ]
 
 
     elif candidate == CAR.SANTA_FE:
@@ -131,10 +133,10 @@ class CarInterface(CarInterfaceBase):
       ret.steerRatio = 16.5
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
-    elif candidate == CAR.GENESIS_G90:
-      ret.mass = 2200
-      ret.wheelbase = 3.15
-      ret.steerRatio = 12.069
+    elif candidate == CAR.GRANDEUR_HEV_19:
+      ret.mass = 1675. + STD_CARGO_KG
+      ret.wheelbase = 2.845
+      ret.steerRatio = 13.96   #12.5  
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
     elif candidate in [CAR.KIA_OPTIMA, CAR.KIA_OPTIMA_H]:

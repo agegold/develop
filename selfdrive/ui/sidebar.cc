@@ -166,7 +166,7 @@ static void ui_draw_sidebar_panda_metric(UIState *s) {
   std::string panda_message = "판다\n연결됨";
   if (s->scene.hwType == cereal::HealthData::HwType::UNKNOWN) {
     panda_severity = 2;
-    panda_message = "NO\nVEHICLE";
+    panda_message = "판다\n연결안됨";
   } else if (s->started) {
     if (s->scene.satelliteCount < 6) {
       panda_severity = 1;
